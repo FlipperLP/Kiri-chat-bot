@@ -1,0 +1,25 @@
+{
+  "name": "Kiri",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlipperLP/Kiri-chat-bot.git"
+  },
+  "keywords": [],
+  "author": "Phil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlipperLP/Kiri-chat-bot/issues"
+  },
+  "homepage": "https://github.com/FlipperLP/Kiri-chat-bot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "mysql": "^2.17.1",
+    "pretty-ms": "^5.0.0"
+  }
+}

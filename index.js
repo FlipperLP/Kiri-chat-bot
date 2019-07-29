@@ -62,3 +62,12 @@ fs.readdir('./functions/', (err, files) => {
   });
   console.log(`Loaded ${jsfiles.length} function(s)!`);
 });
+
+client.on('ready', async () => {
+  // confirm user logged in
+  console.log(`[${config.name}] Logged in as ${client.user.tag}!`);
+
+  // set bot player status
+  client.functions.get('setup_status').run(client, fs)
+    .then(() => console.log('Set status!'));
+});

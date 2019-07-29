@@ -71,3 +71,8 @@ client.on('ready', async () => {
   client.functions.get('setup_status').run(client, fs)
     .then(() => console.log('Set status!'));
 });
+
+
+// logging errors
+client.on('error', e => console.error(e));
+client.on('warn', e => console.warn(e));

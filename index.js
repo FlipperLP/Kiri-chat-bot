@@ -6,6 +6,8 @@ const mysql = require('mysql');
 
 const fs = require('fs');
 
+const config = require('./config/main.json');
+
 if (fs.existsSync('./config/test_token.json')) {
     client.login(token.token);
   } else {

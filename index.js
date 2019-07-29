@@ -30,3 +30,35 @@ if (fs.existsSync('./config/test_token.json')) {
   password = process.env.DB_passw;
   database = process.env.DB_name;
   }
+client.login(token);
+let DB = mysql.createConnection({ host, user, password, database });
+
+// command lister
+client.commands = new Discord.Collection();
+fs.readdir('./commands/', (err, files) => {
+  if (err) console.error(err);
+  let jsfiles = files.filter(f => f.split('.').pop() === 'js');
+  if (jsfiles.length <= 0) return console.log('No CMD(s) to load!');
+  console.log(`Loading ${jsfiles.length} command(s)...`);
+  jsfiles.forEach((f, i) => {
+    let probs = require(`./commands/${f}`);
+    console.log(`    ${i + 1}) Loaded: ${f}!`);
+    client.commands.set(probs.help.name, probs);
+  });
+  console.log(`Loaded ${jsfiles.length} command(s)!`);
+});
+
+// function lister
+client.functions = new Discord.Collection();
+fs.readdir('./functions/', (err, files) => {
+  if (err) console.error(err);
+  let jsfiles = files.filter(f => f.split('.').pop() === 'js');
+  if (jsfiles.length <= 0) return console.log('No function(s) to load!');
+  console.log(`Loading ${jsfiles.length} function(s)...`);
+  jsfiles.forEach((f, i) => {
+    let probs = require(`./functions/${f}`);
+    console.log(`    ${i + 1}) Loaded: ${f}!`);
+    client.functions.set(probs.help.name, probs);
+  });
+  console.log(`Loaded ${jsfiles.length} function(s)!`);
+});

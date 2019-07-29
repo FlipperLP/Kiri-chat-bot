@@ -23,13 +23,13 @@ if (fs.existsSync('./config/test_token.json')) {
   user = dev.DB_user;
   password = dev.DB_passw;
   database = dev.DB_name;
-  } else {
+} else {
   token = process.env.BotToken;
   host = process.env.DB_host;
   user = process.env.DB_user;
   password = process.env.DB_passw;
   database = process.env.DB_name;
-  }
+}
 client.login(token);
 let DB = mysql.createConnection({ host, user, password, database });
 
@@ -72,6 +72,34 @@ client.on('ready', async () => {
     .then(() => console.log('Set status!'));
 });
 
+client.on('message', async (message) => {
+  // return if unwanted
+  if (message.author.bot) return;
+  if (message.channel.type === 'dm') return;
+
+  // checking if staffmember
+  if (message.member.roles.find(role => role.id === config.team)) config.env.set('isTeam', true);
+
+  // cease function call
+  client.functions.get('cease').run(client, message, DB, config);
+
+  // put comamnd in array
+  let messageArray = message.content.split(/\s+/g);
+  let command = messageArray[0];
+  let args = messageArray.slice(1);
+
+  // return if not prefix
+  if (!command.startsWith(config.prefix)) return;
+
+  // remove prefix and lowercase
+  let cmd = client.commands.get(command.slice(config.prefix.length).toLowerCase());
+
+  // run cmd if existent
+  if (cmd) {
+    cmd.run(client, message, args, DB, config)
+      .catch(console.log);
+  } else message.channel.send(`Sry, but \`${message.content}\` doesn't exist...\nTry \`${config.prefix}help\` to find out what I can do for you!`);
+});
 
 // logging errors
 client.on('error', e => console.error(e));

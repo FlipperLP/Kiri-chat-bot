@@ -68,7 +68,7 @@ client.on('ready', async () => {
   console.log(`[${config.name}] Logged in as ${client.user.tag}!`);
 
   // set bot player status
-  client.functions.get('setup_status').run(client, fs)
+  client.functions.get('setup_status').run(client, fs, config)
     .then(() => console.log('Set status!'));
 });
 

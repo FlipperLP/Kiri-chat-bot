@@ -13,6 +13,7 @@ module.exports.run = async (client, message, args, DB, config) => {
   // post team/admin CMDs
   if (config.env.get('isTeam')) {
     embed
+    // FIXME: No newline for first Teamcmd entry is made
       .addField(
         `\`${config.prefix}warn USER-ID|MENTION WARNLVL REASON\``,
         'Warn a user', true,

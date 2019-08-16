@@ -38,14 +38,14 @@ client.commands = new Discord.Collection();
 fs.readdir('./commands/', (err, files) => {
   if (err) console.error(err);
   let jsfiles = files.filter(f => f.split('.').pop() === 'js');
-  if (jsfiles.length <= 0) return console.log('No CMD(s) to load!');
-  console.log(`Loading ${jsfiles.length} command(s)...`);
+  if (jsfiles.length <= 0) return console.log(`[${config.name}] No CMD(s) to load!`);
+  console.log(`[${config.name}] Loading ${jsfiles.length} command(s)...`);
   jsfiles.forEach((f, i) => {
     let probs = require(`./commands/${f}`);
-    console.log(`    ${i + 1}) Loaded: ${f}!`);
+    console.log(`[${config.name}]     ${i + 1}) Loaded: ${f}!`);
     client.commands.set(probs.help.name, probs);
   });
-  console.log(`Loaded ${jsfiles.length} command(s)!`);
+  console.log(`[${config.name}] Loaded ${jsfiles.length} command(s)!`);
 });
 
 // function lister
@@ -53,14 +53,14 @@ client.functions = new Discord.Collection();
 fs.readdir('./functions/', (err, files) => {
   if (err) console.error(err);
   let jsfiles = files.filter(f => f.split('.').pop() === 'js');
-  if (jsfiles.length <= 0) return console.log('No function(s) to load!');
-  console.log(`Loading ${jsfiles.length} function(s)...`);
+  if (jsfiles.length <= 0) return console.log(`[${config.name}] No function(s) to load!`);
+  console.log(`[${config.name}] Loading ${jsfiles.length} function(s)...`);
   jsfiles.forEach((f, i) => {
     let probs = require(`./functions/${f}`);
-    console.log(`    ${i + 1}) Loaded: ${f}!`);
+    console.log(`[${config.name}]     ${i + 1}) Loaded: ${f}!`);
     client.functions.set(probs.help.name, probs);
   });
-  console.log(`Loaded ${jsfiles.length} function(s)!`);
+  console.log(`[${config.name}] Loaded ${jsfiles.length} function(s)!`);
 });
 
 client.on('ready', async () => {
@@ -69,7 +69,7 @@ client.on('ready', async () => {
 
   // set bot player status
   client.functions.get('setup_status').run(client, fs, config)
-    .then(() => console.log('Set status!'));
+    .then(() => console.log(`[${config.name}] Set status!`));
 });
 
 client.on('message', async (message) => {

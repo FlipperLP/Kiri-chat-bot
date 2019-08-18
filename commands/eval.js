@@ -7,11 +7,11 @@ module.exports.run = async (client, message, args, con, config) => {
   const args_eval = message.content.split(' ').slice(1);
   if (message.author.id !== '172031697355800577') {
     message.react('❌');
-    client.functions.get('eventlogger').run(message, 'eval', 'Someone tried to use the eval command and failed!')
+    client.functions.get('eventlogger').run(message, 'eval', 'Someone tried to use the eval command and failed!', config.colorInfo)
       .catch(console.log);
     return;
   }
-  client.functions.get('eventlogger').run(message, 'eval', 'Someone used the eval command!')
+  client.functions.get('eventlogger').run(message, 'eval', 'Someone used the eval command!', config.colorFatal)
     .catch(console.log);
   if (message.content.indexOf('token.token' || 'process.env.BOT_TOKEN' || 'token') !== -1) return message.channel.send('Do you think its that easy?\nSry, but cant give you my key...');
   try {

@@ -10,9 +10,9 @@
     "cease": "605836883489980438",
     "ceaseEmoji": "558180046766866462",
     "logChannel": "584884739178233864",
-    "colorInfo": "56319",
-    "colorWarn": "16752640",
-    "colorFatal": "16711680",
+    "colorInfo": "00DBFF",
+    "colorWarn": "FFA000",
+    "colorFatal": "FF0000",
     "trollusers": [
         "297445297427054603",
         "585896948830044170"

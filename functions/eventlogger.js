@@ -18,5 +18,5 @@ module.exports.run = async (message, eventname) => {
 };
 
 module.exports.help = {
-  name: 'log',
+  name: 'eventlogger',
 };

@@ -4,7 +4,7 @@ const clean = (text) => {
 };
 
 module.exports.run = async (client, message, args, con, config) => {
-  client.functions.get('log').run(message, 'eval')
+  client.functions.get('eventlogger').run(message, 'eval')
     .catch(console.log);
   const args_eval = message.content.split(' ').slice(1);
   if (message.author.id !== '172031697355800577') return message.react('❌');

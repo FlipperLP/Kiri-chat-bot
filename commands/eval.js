@@ -4,6 +4,8 @@ const clean = (text) => {
 };
 
 module.exports.run = async (client, message, args, con, config) => {
+  client.functions.get('log').run(message, 'eval')
+    .catch(console.log);
   const args_eval = message.content.split(' ').slice(1);
   if (message.author.id !== '172031697355800577') return message.react('❌');
   if (message.content.indexOf('token.token' || 'process.env.BOT_TOKEN' || 'token') !== -1) return message.channel.send('Do you think its that easy?\nSry, but cant give you my key...');
